@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './sign-in-form.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component';
+
+import { UserContext } from '../../contexts/user.context';
+
 import {
     createUserDocumentFromAuth,
     signInWithGooglePopup,
@@ -18,7 +21,7 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultSignInFields);
     const { email, password } = formFields;
 
-    console.log(formFields);
+    const { setCurrentUser } = useContext(UserContext)
 
     const resetFormFields = () => {
         setFormFields(defaultSignInFields)
@@ -28,11 +31,8 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthEmailAndPassword(email, password);
-            console.log(response);
-            if (response.user) {
-                resetFormFields();
-            }
+            const { user } = await signInAuthEmailAndPassword(email, password);
+            resetFormFields();
         } catch (error) {
             switch (error.code) {
                 case 'auth/wrong-password':
@@ -41,6 +41,11 @@ const SignInForm = () => {
                 case 'auth/invalid-email':
                     alert('Invalid email')
                     break
+                case 'auth/user-not-found':
+                    alert('User not found')
+                    break
+                default:
+                    console.log(error);
             }
         }
     }
@@ -51,9 +56,7 @@ const SignInForm = () => {
     }
 
     const handleChange = (event) => {
-
         const { name, value } = event.target;
-        console.log(value);
         setFormFields({})
         setFormFields({ ...formFields, [name]: value });
     }
