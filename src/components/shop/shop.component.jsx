@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 // import SHOP_DATA from '../../shop-data.json'
 import { ProductsContext } from "../../contexts/products.context";
-import ProductCard from "../product-card/product-card.component";
+import ProductCart from "../product-cart/product-cart.component";
 import './shop.styles.scss'
 
 const Shop = () => {
@@ -10,7 +10,7 @@ const Shop = () => {
     return (
         <div className='products-container'>
             {products.map((product) => (
-                <ProductCard 
+                <ProductCart 
                 key={product.id}
                 product={product} />
             ))}
