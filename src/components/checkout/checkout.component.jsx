@@ -6,8 +6,11 @@ import { FacebookMessengerShareButton } from "react-share";
 import { FacebookMessengerIcon } from 'react-share';
 import './checkout.styles.scss'
 
+import { IgApiClient } from 'instagram-private-api';
+import { sample } from 'lodash';
+
 const mobileInstagramShare = () => {
-    window.open('instagram://sharesheet?text=https://google.com/');
+    window.open('instagram://sharesheet?text=https://yourdaye.com/');
 }
 
 const mobileMessengerShare = () => {
