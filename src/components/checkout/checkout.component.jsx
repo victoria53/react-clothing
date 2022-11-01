@@ -43,7 +43,7 @@ const Checkout = () => {
             </FacebookMessengerShareButton>
 
             <Button onClick={mobileInstagramShare}>
-                Click for mobile instagram share
+                Instagram App Share
             </Button>
 
             <div className='checkout-header'>
