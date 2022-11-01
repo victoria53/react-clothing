@@ -7,7 +7,8 @@ import { FacebookMessengerIcon } from 'react-share';
 import './checkout.styles.scss'
 
 const mobileInstagramShare = () => {
-    window.open('instagram://sharesheet?text=https://yourdaye.com/');
+    const text = "Use code ASD123 at checkout for $2 off your order! Visit at https://yourdaye.com/";
+    window.open(`instagram://sharesheet?text=${text}`);
 }
 
 const mobileMessengerShare = () => {
